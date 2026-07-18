@@ -21,3 +21,4 @@ if __name__ == "__main__":
     bot.infinity_polling()
 
 #!/usr/bin/env python
+os.environ.get('API_TOKEN')
