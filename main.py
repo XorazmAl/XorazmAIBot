@@ -4,7 +4,7 @@ from flask import Flask
 from threading import Thread
 
 # Botni aniqlash
-8860187470:AAGge6qG95Fa9GzmEt-BgudJ4-d9fwoUQ8I
+API_TOKEN = 8860187470:AAGge6qG95Fa9GzmEt-BgudJ4-d9fwoUQ8I
 
 # Veb-server qismi (Render uchun)
 app = Flask(__name__)
