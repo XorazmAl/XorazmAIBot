@@ -4,8 +4,7 @@ from flask import Flask
 from threading import Thread
 
 # Botni aniqlash
-API_TOKEN = 'SIZNING_TOKENINGIZNI_SHU_YERGA_YOZING'
-bot = telebot.TeleBot(API_TOKEN)
+API_TOKEN = 'BU_YERGA_BOTFATHER_BERGAN_TOKENNI_QO_YING'
 
 # Veb-server qismi (Render uchun)
 app = Flask(__name__)
