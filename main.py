@@ -13,7 +13,9 @@ def send_welcome(message):
     bot.reply_to(message, "Salom! Men ishlayapman.")
 
 def run():
-    app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 8080)))
+    port = int(os.environ.get('PORT', 10000))
+    app.run(host='0.0.0.0', port=port)
+
 
 if __name__ == "__main__":
     Thread(target=run).start()
