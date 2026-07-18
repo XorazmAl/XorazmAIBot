@@ -1,8 +1,13 @@
 import os
+import telebot
 from flask import Flask
 from threading import Thread
 
-# Web server yaratamiz (Render o'chirmasligi uchun)
+# Botni aniqlash
+API_TOKEN = 'SIZNING_TOKENINGIZNI_SHU_YERGA_YOZING'
+bot = telebot.TeleBot(API_TOKEN)
+
+# Veb-server qismi (Render uchun)
 app = Flask(__name__)
 @app.route('/')
 def home():
@@ -11,14 +16,19 @@ def home():
 def run():
     app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 8080)))
 
-# Botni ishga tushiramiz
 def keep_alive():
     t = Thread(target=run)
     t.start()
+
+# Bot komandalari
+@bot.message_handler(commands=['start'])
+def send_welcome(message):
+    bot.reply_to(message, "Salom! Men ishlayapman.")
 
 if __name__ == "__main__":
     keep_alive()
     bot.infinity_polling()
 
+
 #!/usr/bin/env python
-os.environ.get('API_TOKEN')
+os.environ.get('API
