@@ -3,9 +3,8 @@ import telebot
 from flask import Flask
 from threading import Thread
 
-# Tokeningizni mana bu yerga joylang
-API_TOKEN= '8860187470:AAGge6qG95Fa9GzmEt-BgudJ4-d9fwoUQ8I'
-
+API_TOKEN = '8860187470:AAGge6qQ95Fa9GzmEt-BgudJ4-d9fwoUQ8I'
+bot = telebot.TeleBot(API_TOKEN)
 
 app = Flask(__name__)
 
@@ -23,4 +22,3 @@ def run():
 if __name__ == "__main__":
     Thread(target=run).start()
     bot.infinity_polling()
-
