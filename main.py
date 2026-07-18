@@ -1,13 +1,15 @@
-import os
+i
+   import os
 import telebot
 from flask import Flask
 from threading import Thread
 
-# Botni aniqlash
-API_TOKEN = 8860187470:AAGge6qG95Fa9GzmEt-BgudJ4-d9fwoUQ8I
+# Tokeningizni mana bu yerga, tirnoq ichiga yozing
+API_TOKEN = '8860187470:AAGge6qQ95Fa9GzmEt-BgudJ4-d'
+bot = telebot.TeleBot(API_TOKEN)
 
-# Veb-server qismi (Render uchun)
 app = Flask(__name__)
+
 @app.route('/')
 def home():
     return "Bot ishlayapti!"
@@ -19,7 +21,6 @@ def keep_alive():
     t = Thread(target=run)
     t.start()
 
-# Bot komandalari
 @bot.message_handler(commands=['start'])
 def send_welcome(message):
     bot.reply_to(message, "Salom! Men ishlayapman.")
@@ -27,7 +28,3 @@ def send_welcome(message):
 if __name__ == "__main__":
     keep_alive()
     bot.infinity_polling()
-
-
-#!/usr/bin/env python
-os.environ.get('API
