@@ -3,9 +3,7 @@ import telebot
 from flask import Flask
 from threading import Thread
 
-API_TOKEN = '8860187470:AAGge6qQ95Fa9GzmEt-BgudJ4-d9fwoUQ8I'
-bot = telebot.TeleBot(API_TOKEN)
-
+API_TOKEN = '8860187470:AAGxGYKMM_MVEWyHF9rkZwLWZGqnv522Pow'
 app = Flask(__name__)
 
 @app.route('/')
