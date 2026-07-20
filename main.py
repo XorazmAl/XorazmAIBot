@@ -2,9 +2,10 @@ import os
 import telebot
 from flask import Flask
 from threading import Thread
-API_TOKEN = '8860187470:AAFQj-YRPF2dv03rzrviVvkwEkOo5seJkLs
+API_TOKEN = os.getenv("BOT_TOKEN")'8860187470:AAFQj-YRPF2dv03rzrviVvkwEkOo5seJkLs
+bot = telebot.TeleBot(API_TOKEN)
 @app.route('/')'
-def home():
+def home(from flask import Flask):
     return "Bot ishlayapti!"
 
 @bot.message_handler(commands=['start'])
