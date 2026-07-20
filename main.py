@@ -2,29 +2,30 @@ import os
 import telebot
 from flask import Flask
 from threading import Thread
-API_TOKEN = "8860187470:AAGzdkoyPt6DBj5HRj4Y77E8DShZtX_i5RM"
+from openai import OpenAI
+
+# Telegram Bot Token
+API_TOKEN = "8860187470:AAGtpaZRBVqg3ujsGEEl7pPg6J5P4vbG680"
+
 bot = telebot.TeleBot(API_TOKEN)
+
+# OpenAI API Key (Render Environment Variables)
+client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+
 app = Flask(__name__)
 
-@app.route('/')
+@app.route("/")
 def home():
-    return "Bot ishlayapti!"
+    return "XorazmAI ishlayapti!"
 
-@bot.message_handler(commands=['start'])
-def send_welcome(message):
-    bot.reply_to(message, "Salom! Men ishlayapman.")
+@bot.message_handler(commands=["start"])
+def start(message):
+    bot.reply_to(
+        message,
+        "👋 Assalomu alaykum!\nMen XorazmAI. Savolingizni yozing."
+    )
 
-def run():
-    port = int(os.environ.get('PORT', 10000))
-    app.run(host='0.0.0.0', port=port)
-
-
-if __name__ == "__main__":
-    Thread(target=run).start()
-    bot.infinity_polling()
-from openai import OpenAI
-client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
-@bot.message_handler(func=lambda message: True)
+@bot.message_handler(func=lambda m: True)
 def chat(message):
     try:
         response = client.chat.completions.create(
@@ -45,3 +46,11 @@ def chat(message):
 
     except Exception as e:
         bot.reply_to(message, f"Xatolik: {e}")
+
+def run():
+    port = int(os.environ.get("PORT", 10000))
+    app.run(host="0.0.0.0", port=port)
+
+if __name__ == "__main__":
+    Thread(target=run).start()
+    bot.infinity_polling(skip_pending=True)
