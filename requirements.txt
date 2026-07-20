@@ -2,3 +2,4 @@ pyTelegramBotAPI==4.27.0
 Flask
 gunicorn
 openai
+openai>=1.0.0
