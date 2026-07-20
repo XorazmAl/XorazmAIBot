@@ -22,3 +22,26 @@ def run():
 if __name__ == "__main__":
     Thread(target=run).start()
     bot.infinity_polling()
+from openai import OpenAI
+client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+@bot.message_handler(func=lambda message: True)
+def chat(message):
+    try:
+        response = client.chat.completions.create(
+            model="gpt-4.1-mini",
+            messages=[
+                {
+                    "role": "system",
+                    "content": "Sen XorazmAI nomli foydali va muloyim Telegram yordamchisisan."
+                },
+                {
+                    "role": "user",
+                    "content": message.text
+                }
+            ]
+        )
+
+        bot.reply_to(message, response.choices[0].message.content)
+
+    except Exception as e:
+        bot.reply_to(message, f"Xatolik: {e}")
