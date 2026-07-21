@@ -1,5 +1,5 @@
-pyTelegramBotAPI==4.27.0
+pyTelegramBotAPI
 Flask
-gunicorn
+groq
 openai
 openai>=1.0.0
