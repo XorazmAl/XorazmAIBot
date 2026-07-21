@@ -1,16 +1,15 @@
 import os
-import telebot
-from flask import Flask
 from threading import Thread
-from openai import OpenAI
+from flask import Flask
+import telebot
+from groq import Groq
 
-# Telegram Bot Token
-API_TOKEN = "8860187470:AAGtpaZRBVqg3ujsGEEl7pPg6J5P4vbG680"
+BOT_TOKEN = os.getenv("BOT_TOKEN")"8860187470:AAGtpaZRBVqg3ujsGEEl7pPg6J5P4vbG680"
 
-bot = telebot.TeleBot(API_TOKEN)
+GROQ_API_KEY = os.getenv("GROQ_API_KEY")
 
-# OpenAI API Key (Render Environment Variables)
-client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+bot = telebot.TeleBot(BOT_TOKEN)
+client = Groq(api_key=GROQ_API_KEY)
 
 app = Flask(__name__)
 
@@ -22,18 +21,18 @@ def home():
 def start(message):
     bot.reply_to(
         message,
-        "👋 Assalomu alaykum!\nMen XorazmAI. Savolingizni yozing."
+        "👋 Assalomu alaykum!\nMen XorazmAI.\nSavolingizni yozing."
     )
 
 @bot.message_handler(func=lambda m: True)
 def chat(message):
     try:
         response = client.chat.completions.create(
-            model="gpt-4.1-mini",
+            model="llama-3.3-70b-versatile",
             messages=[
                 {
                     "role": "system",
-                    "content": "Sen XorazmAI nomli foydali va muloyim Telegram yordamchisisan."
+                    "content": "Sen XorazmAI nomli foydali o'zbek tilidagi yordamchisan."
                 },
                 {
                     "role": "user",
